@@ -36,9 +36,9 @@ class MyApp extends StatelessWidget {
       ),
       (
         name: 'C',
-        theme: defaultTheme.copyWith(
+        theme: defaultChoice.theme.copyWith(
           extensions: [
-            ...defaultTheme.extensions.values,
+            ...defaultChoice.theme.extensions.values,
             CustomCardThemeExtensionv2(
               tintColor: Colors.yellow,
             ),
