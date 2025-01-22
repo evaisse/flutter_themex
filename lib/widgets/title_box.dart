@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_themex/themex.dart';
-import 'package:flutter_themex/widgets/theme_switcher.dart';
+import 'package:themex/themex.dart';
+import 'package:themex/widgets/theme_switcher.dart';
 
 class TitleBox extends StatelessWidget {
   final ThemeChoice choice;

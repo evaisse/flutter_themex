@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_themex/widgets/custom_card.dart';
+import 'package:themex/widgets/custom_card.dart';
 
 ThemeData createThemeA(ThemeData theme) {
   final customCardThemeExtension = theme.extension<CustomCardThemeExtension>() ?? const CustomCardThemeExtension();

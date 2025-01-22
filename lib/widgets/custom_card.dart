@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_themex/themex.dart';
+import 'package:themex/themex.dart';
 
 class CustomCard extends StatelessWidget {
   final String title;

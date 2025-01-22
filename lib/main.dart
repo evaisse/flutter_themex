@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import 'package:flutter_themex/themex/themes/theme_a.dart';
-import 'package:flutter_themex/themex/themes/theme_b.dart';
-import 'package:flutter_themex/themex/themes/theme_c.dart';
+import 'package:themex/themex/themes/theme_a.dart';
+import 'package:themex/themex/themes/theme_b.dart';
+import 'package:themex/themex/themes/theme_c.dart';
 
 import 'widgets/custom_card.dart';
 import 'widgets/theme_switcher.dart';
