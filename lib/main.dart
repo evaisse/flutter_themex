@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       (
         /// theme C inherit from theme C
         name: 'Theme C',
-        theme: createThemeC(defaultChoice.theme),
+        theme: createThemeC(createThemeB(defaultChoice.theme)),
       )
     };
 

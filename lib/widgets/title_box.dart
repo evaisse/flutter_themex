@@ -15,7 +15,7 @@ class TitleBox extends StatelessWidget {
     final tx = context.themex.titleBox;
 
     return Container(
-      padding: tx.padding ?? EdgeInsets.all(context.themex.sizes.medium),
+      padding: tx.padding ?? EdgeInsets.all(context.themex.sizes.spacingMedium),
       child: Text(
         choice.name,
         style: tx.textStyle,

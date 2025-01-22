@@ -15,10 +15,12 @@ class CustomCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final tx = context.themex.customCard;
 
+    final z = context.themex.extensions;
+
     return Card(
-      color: tx.backgroundColor,
+      surfaceTintColor: tx.backgroundColor,
       child: Padding(
-        padding: tx.padding ?? EdgeInsets.all(context.themex.sizes.medium),
+        padding: tx.padding ?? EdgeInsets.all(context.themex.sizes.spacingLarge),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -29,8 +31,8 @@ class CustomCard extends StatelessWidget {
             const SizedBox(height: 8.0),
             if (tx is CustomCardThemeExtensionv2)
               Container(
-                height: 20,
-                color: tx.tintColor,
+                height: tx.separatorHeight ?? context.themex.sizes.spacingLarge,
+                color: tx.separatorColor ?? context.themex.colorScheme.primary,
               ),
             Text(
               text,
@@ -106,7 +108,8 @@ class CustomCardThemeExtension extends ThemeExtension<CustomCardThemeExtension> 
 }
 
 class CustomCardThemeExtensionv2 extends CustomCardThemeExtension {
-  final Color? tintColor;
+  final Color? separatorColor;
+  final double? separatorHeight;
 
   CustomCardThemeExtensionv2({
     super.titleStyle,
@@ -114,6 +117,7 @@ class CustomCardThemeExtensionv2 extends CustomCardThemeExtension {
     super.buttonStyle,
     super.padding,
     super.backgroundColor,
-    required this.tintColor,
+    this.separatorColor,
+    this.separatorHeight,
   });
 }
