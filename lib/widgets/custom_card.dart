@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_themex/themex.dart';
 
 class CustomCard extends StatelessWidget {
   final String title;
@@ -12,39 +13,33 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    final themeExtension = Theme.of(context).extension<CustomCardThemeExtension>() ??
-        CustomCardThemeExtension(
-          titleStyle: theme.textTheme.titleMedium ?? const TextStyle(),
-          textStyle: theme.textTheme.bodyMedium ?? const TextStyle(),
-          buttonStyle: const ButtonStyle(),
-        );
+    final tx = context.themex.customCard;
 
     return Card(
-      color: themeExtension.backgroundColor,
+      color: tx.backgroundColor,
       child: Padding(
-        padding: themeExtension.padding ?? const EdgeInsets.all(16.0),
+        padding: tx.padding ?? EdgeInsets.all(context.themex.sizes.medium),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               title,
-              style: themeExtension.titleStyle,
+              style: tx.titleStyle,
             ),
             const SizedBox(height: 8.0),
-            if (themeExtension is CustomCardThemeExtensionv2)
+            if (tx is CustomCardThemeExtensionv2)
               Container(
                 height: 20,
-                color: themeExtension.tintColor,
+                color: tx.tintColor,
               ),
             Text(
               text,
-              style: themeExtension.textStyle,
+              style: tx.textStyle,
             ),
             const SizedBox(height: 16.0),
             TextButton(
               onPressed: () {},
-              style: themeExtension.buttonStyle,
+              style: tx.buttonStyle,
               child: const Text('Button'),
             ),
           ],
@@ -52,6 +47,10 @@ class CustomCard extends StatelessWidget {
       ),
     );
   }
+}
+
+extension CustomCardThemeDataExtension on ThemeData {
+  CustomCardThemeExtension get customCard => extension<CustomCardThemeExtension>() ?? const CustomCardThemeExtension();
 }
 
 class CustomCardThemeExtension extends ThemeExtension<CustomCardThemeExtension> {

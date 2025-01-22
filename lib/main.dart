@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_themex/themex/themes/theme_a.dart';
+import 'package:flutter_themex/themex/themes/theme_b.dart';
+import 'package:flutter_themex/themex/themes/theme_c.dart';
+
 import 'widgets/custom_card.dart';
-import 'widgets/theme_switcher_widget.dart';
+import 'widgets/theme_switcher.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,38 +16,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultChoice = (
-      name: "A",
-      theme: Theme.of(context).copyWith(extensions: [
-        const CustomCardThemeExtension(
-          backgroundColor: Colors.indigo,
-        )
-      ]),
-    );
+    final defaultChoice = (name: "Theme A", theme: createThemeA(Theme.of(context)));
     final themeNotifier = ValueNotifier(defaultChoice);
     final themes = {
       defaultChoice,
       (
-        name: "B",
-        theme: defaultChoice.theme.copyWith(
-          extensions: [
-            ...defaultChoice.theme.extensions.values,
-            defaultChoice.theme.extension<CustomCardThemeExtension>()?.copyWith(
-                  backgroundColor: Colors.red,
-                ),
-          ].whereType<ThemeExtension>(),
-        )
+        /// theme B inherit from theme A
+        name: "Theme B",
+        theme: createThemeB(defaultChoice.theme),
       ),
       (
-        name: 'C',
-        theme: defaultChoice.theme.copyWith(
-          extensions: [
-            ...defaultChoice.theme.extensions.values,
-            CustomCardThemeExtensionv2(
-              tintColor: Colors.yellow,
-            ),
-          ].whereType<ThemeExtension>(),
-        )
+        /// theme C inherit from theme C
+        name: 'Theme C',
+        theme: createThemeC(defaultChoice.theme),
       )
     };
 
