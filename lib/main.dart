@@ -16,19 +16,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final defaultChoice = (name: "Theme A", theme: createThemeA(Theme.of(context)));
+    final defaultChoice = (name: "Theme A", theme: themeA.build(Theme.of(context)));
     final themeNotifier = ValueNotifier(defaultChoice);
     final themes = {
       defaultChoice,
       (
         /// theme B inherit from theme A
         name: "Theme B",
-        theme: createThemeB(defaultChoice.theme),
+        theme: themeB.build(defaultChoice.theme),
       ),
       (
         /// theme C inherit from theme C
         name: 'Theme C',
-        theme: createThemeC(createThemeB(defaultChoice.theme)),
+        theme: themeC.build(themeB.build(defaultChoice.theme)),
       )
     };
 
