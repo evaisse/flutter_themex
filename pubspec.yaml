@@ -10,9 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-
   cupertino_icons: ^1.0.8
-  macros: ^0.0.1
+  common_macros: ^0.1.0-7.dev
 
 dev_dependencies:
   flutter_test:

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:themex/macros/theme_macro.dart';
 import 'package:themex/themex.dart';
 import 'package:themex/widgets/theme_switcher.dart';
 
@@ -38,7 +39,7 @@ class TitleBox extends StatelessWidget {
 
 extension TitleBoxThemeDataExtension on ThemeData {
   ///
-  TitleBoxThemeExtension get titleBox => extension<TitleBoxThemeExtension>() ?? TitleBoxThemeExtension();
+  TitleBoxThemeExtension get titleBox => extension<TitleBoxThemeExtension>() ?? const TitleBoxThemeExtension();
 }
 
 final class TitleBoxStyle {
@@ -49,28 +50,17 @@ final class TitleBoxStyle {
     this.textStyle,
     this.padding,
   });
+
+  static TitleBoxStyle? lerp(TitleBoxStyle? a, TitleBoxStyle? b, double t) {
+    return TitleBoxStyle(
+      textStyle: TextStyle.lerp(a?.textStyle, b?.textStyle, t),
+      padding: EdgeInsets.lerp(a?.padding, b?.padding, t),
+    );
+  }
 }
 
+@ThemeMacro()
 class TitleBoxThemeExtension extends ThemeExtension<TitleBoxThemeExtension> {
   final TitleBoxStyle? primary;
   final TitleBoxStyle? secondary;
-
-  TitleBoxThemeExtension({
-    this.primary,
-    this.secondary,
-  });
-
-  @override
-  ThemeExtension<TitleBoxThemeExtension> copyWith({
-    TitleBoxStyle? primary,
-    TitleBoxStyle? secondary,
-  }) =>
-      TitleBoxThemeExtension(
-        primary: primary,
-        secondary: secondary,
-      );
-
-  @override
-  ThemeExtension<TitleBoxThemeExtension> lerp(covariant ThemeExtension<TitleBoxThemeExtension>? other, double t) =>
-      copyWith();
 }
