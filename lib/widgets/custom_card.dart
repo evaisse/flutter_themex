@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:themex/macros/theme_macro.dart';
 import 'package:themex/themex.dart';
 
 class CustomCard extends StatelessWidget {
@@ -53,51 +54,13 @@ extension CustomCardThemeDataExtension on ThemeData {
   CustomCardThemeExtension get customCard => extension<CustomCardThemeExtension>() ?? const CustomCardThemeExtension();
 }
 
+@ThemeMacro(imports: "package:flutter/material.dart")
 class CustomCardThemeExtension extends ThemeExtension<CustomCardThemeExtension> {
   final TextStyle? titleStyle;
   final TextStyle? textStyle;
   final ButtonStyle? buttonStyle;
   final EdgeInsets? padding;
   final Color? backgroundColor;
-
-  const CustomCardThemeExtension({
-    this.titleStyle,
-    this.textStyle,
-    this.buttonStyle,
-    this.padding,
-    this.backgroundColor,
-  });
-
-  @override
-  CustomCardThemeExtension copyWith({
-    TextStyle? titleStyle,
-    TextStyle? textStyle,
-    ButtonStyle? buttonStyle,
-    EdgeInsets? padding,
-    Color? backgroundColor,
-  }) {
-    return CustomCardThemeExtension(
-      titleStyle: titleStyle ?? this.titleStyle,
-      textStyle: textStyle ?? this.textStyle,
-      buttonStyle: buttonStyle ?? this.buttonStyle,
-      padding: padding ?? this.padding,
-      backgroundColor: backgroundColor ?? this.backgroundColor,
-    );
-  }
-
-  @override
-  CustomCardThemeExtension lerp(CustomCardThemeExtension? other, double t) {
-    if (other == null) {
-      return this;
-    }
-    return CustomCardThemeExtension(
-      titleStyle: TextStyle.lerp(titleStyle, other.titleStyle, t),
-      textStyle: TextStyle.lerp(textStyle, other.textStyle, t),
-      buttonStyle: ButtonStyle.lerp(buttonStyle, other.buttonStyle, t),
-      padding: EdgeInsets.lerp(padding, other.padding, t),
-      backgroundColor: Color.lerp(backgroundColor, other.backgroundColor, t),
-    );
-  }
 
   @override
   String toString() {
@@ -109,13 +72,20 @@ class CustomCardThemeExtensionv2 extends CustomCardThemeExtension {
   final Color? separatorColor;
   final double? separatorHeight;
 
+  ///super.titleStyle etc ne fonctionne pas, la classe dérivée doit appeler explicitement le constructeur parent à cause de la macro
   CustomCardThemeExtensionv2({
-    super.titleStyle,
-    super.textStyle,
-    super.buttonStyle,
-    super.padding,
-    super.backgroundColor,
     this.separatorColor,
     this.separatorHeight,
-  });
+    TextStyle? titleStyle,
+    TextStyle? textStyle,
+    ButtonStyle? buttonStyle,
+    EdgeInsets? padding,
+    Color? backgroundColor,
+  }) : super(
+          titleStyle: titleStyle,
+          textStyle: textStyle,
+          buttonStyle: buttonStyle,
+          padding: padding,
+          backgroundColor: backgroundColor,
+        );
 }
